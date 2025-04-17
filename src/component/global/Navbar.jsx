@@ -62,7 +62,7 @@ const NavItem = styled("a")(({ theme }) => ({
   textDecoration: "none",
   color:
     theme.palette.mode === "light"
-      ? tokens(theme.palette.mode).white[300]
+      ? tokens(theme.palette.mode).white[200]
       : tokens(theme.palette.mode).white[700],
   "&:hover": {
     color: theme.palette.secondary.main,
