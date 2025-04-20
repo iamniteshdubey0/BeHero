@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, styled, useTheme } from "@mui/material";
-import { tokens } from "../utils/theme";
+import { tokens } from "../../utils/theme";
 import { motion } from "framer-motion";
 
 const SlideButtonWrapper = styled(motion.div)(() => ({

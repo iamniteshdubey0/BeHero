@@ -1,18 +1,19 @@
 import React from "react";
 import { useContext } from "react";
 import { Container, Grid, styled } from "@mui/material";
-import { tokens, ColorModeContext } from "../../utils/theme";
-import RoundButton from "../RoundButton";
+import { tokens, ColorModeContext } from "../../../utils/theme";
+import RoundButton from "../../Elements/RoundButton";
 import { useTheme } from "@mui/material";
-import DynamicIconButton from "../styledIconButon";
+import DynamicIconButton from "../../Elements/styledIconButon";
 import LoginIcon from "@mui/icons-material/Login";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import "@fontsource/indie-flower";
+import { NavbarData } from "../../../constants/UIConstant";
 
 const NavContainer = styled(Container)(({ theme }) => ({
   position: "sticky",
-  top:20,
+  top: 20,
   backgroundColor:
     theme.palette.mode === "light"
       ? tokens(theme.palette.mode).yellow[800]
@@ -20,7 +21,7 @@ const NavContainer = styled(Container)(({ theme }) => ({
   padding: "7px 20px",
   boxShadow: theme.shadows[1],
   height: "55px",
-  zIndex:100,
+  zIndex: 100,
 }));
 
 const NavWrapper = styled(Grid)({
@@ -56,6 +57,7 @@ const NavItems = styled(Grid)(({ theme }) => ({
 }));
 
 const NavItem = styled("a")(({ theme }) => ({
+  textTransform: "capitalize",
   fontSize: "14px",
   fontWeight: 400,
   cursor: "pointer",
@@ -83,13 +85,15 @@ const Navbar = () => {
     <NavContainer maxWidth="lg" sx={{ my: 2, borderRadius: 12 }}>
       <NavWrapper container>
         <NavLogo size={{ xs: 4, md: 2 }}>
-          <Logo src="https://via.placeholder.com/150" alt="Logo" />
-          <LogoText>BeHero</LogoText>
+          <Logo src={NavbarData.logo} alt="Logo" />
+          <LogoText>{NavbarData.name}</LogoText>
         </NavLogo>
         <NavItems size={{ xs: 0, md: 8 }}>
-          <NavItem>About</NavItem>
-          <NavItem>Services</NavItem>
-          <NavItem>Contact</NavItem>
+          {NavbarData.navlist.map((item, index) => (
+            <NavItem key={index} href={item.link}>
+              {item.title}
+            </NavItem>
+          ))}
         </NavItems>
         <NavActions size={{ xs: 0, md: 2 }}>
           <DynamicIconButton

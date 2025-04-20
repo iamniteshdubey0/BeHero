@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Container, Grid, styled, Typography, Box } from "@mui/material";
-import { tokens } from "../../utils/theme";
-import CollectiomCards from "../Elements/CollectiomCards";
-import RoundButton from "../RoundButton";
+import { tokens } from "../../../utils/theme";
+import SectionHeader from "../../Elements/SectionHeader";
+import CollectiomCards from "../../Elements/CollectiomCards";
+import RoundButton from "../../Elements/RoundButton";
 
 const Wrapper = styled(Grid)(({ theme }) => ({
   display: "flex",
@@ -10,29 +11,6 @@ const Wrapper = styled(Grid)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   gap: "5px",
-}));
-
-const TopBox = styled(Grid)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-}));
-
-const SuperHeading = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.h1.fontSize,
-  fontWeight: theme.typography.fontWeightBold,
-}));
-
-const Heading = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.h4.fontSize,
-  fontWeight: theme.typography.fontWeightMedium,
-  backgroundColor:
-    theme.palette.mode === "light"
-      ? tokens(theme.palette.mode).yellow[800]
-      : tokens(theme.palette.mode).darkPurple[600],
-  padding: 4,
-  borderRadius: "5px",
 }));
 
 const ParaText = styled(Typography)(({ theme }) => ({
@@ -97,10 +75,7 @@ const Gallery = () => {
       }}
     >
       <Wrapper>
-        <TopBox>
-          <Heading>The Ultimate</Heading>
-          <SuperHeading>Collections</SuperHeading>
-        </TopBox>
+        <SectionHeader title="Collections" subtitle="Our Best"></SectionHeader>
         <MiddleBox>
           <CardStack>
             {cardPositions.map((card, index) => {

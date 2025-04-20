@@ -1,9 +1,10 @@
 import React from "react";
 import { Box, Container, Grid, styled, Typography } from "@mui/material";
-import { tokens } from "../../utils/theme";
+import { tokens } from "../../../utils/theme";
 import "@fontsource/indie-flower";
-import RoundButton from "../RoundButton";
+import RoundButton from "../../Elements/RoundButton";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { HeroData } from "../../../constants/UIConstant";
 
 const LayersWrapper = styled(Grid)(({ theme }) => ({
   top: 0,
@@ -159,58 +160,34 @@ const Hero = () => {
     >
       <LayersWrapper>
         <Layer1>
-          <StickerBox sx={{ top: "45%", left: "-2%" }}>
-            <img
-              src="src\assets\fairy-1.svg"
-              alt="star"
-              style={{ width: "100%" }}
-            />
-          </StickerBox>
-          <StickerBox sx={{ top: "-20%", left: "65%" }}>
-            <img
-              src="src\assets\planet-1.png"
-              alt="star"
-              style={{ width: "100%", mixBlendMode: "overlay" }}
-            />
-          </StickerBox>
-          <StickerBox sx={{ top: "55%", left: "-3%" }}>
-            <img
-              src="src\assets\star.png"
-              alt="star"
-              style={{ width: "100%" }}
-            />
-          </StickerBox>
+          {HeroData.overlayIcons.layer1.map((item) => (
+            <StickerBox sx={{ top: item.position.top, left: item.position.left }}>
+              <img
+                src={item.img}
+                alt={item.name}
+                style={{ width: "100%" }}
+              />
+            </StickerBox>
+          ))}
+
           <Layer2>
-            <StickerBox sx={{ top: "45%", left: "-2%" }}>
+          {HeroData.overlayIcons.layer2.map((item) => (
+            <StickerBox sx={{ top: item.position.top, left: item.position.left }}>
               <img
-                src="src\assets\space-ship.png"
-                alt="star"
+                src={item.img}
+                alt={item.name}
                 style={{ width: "100%" }}
               />
             </StickerBox>
-            <StickerBox sx={{ top: "60%", right: "20%" }}>
-              <img
-                src="src\assets\rainbow.png"
-                alt="star"
-                style={{ width: "100%" }}
-              />
-            </StickerBox>
-            <StickerBox sx={{ top: "-35%", left: "60%" }}>
-              <img
-                src="src\assets\pencil-1.png"
-                alt="star"
-                style={{ width: "100%" }}
-              />
-            </StickerBox>
+          ))}
+           
           </Layer2>
         </Layer1>
       </LayersWrapper>
       <ContentWrapper>
         <HeroHeader>
-          <HeroHeading>Be Hero of your own story</HeroHeading>
-          <HeroSubHeading>
-            Let the child be the director, and the actor in his own play
-          </HeroSubHeading>
+          <HeroHeading>{HeroData.mainheading}</HeroHeading>
+          <HeroSubHeading>{HeroData.subheading}</HeroSubHeading>
           {/* add diffeent Button variant*/}
           <RoundButton
             size="large"

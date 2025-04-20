@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  Container,
-  styled,
-  Grid,
-  Typography,
-  List,
-  ListItem,
-} from "@mui/material";
-import { tokens } from "../../utils/theme";
+import { Container, styled, Grid, Typography } from "@mui/material";
+import { tokens } from "../../../utils/theme";
+import FeatureItemCard from "../../Elements/FeatureItemCard";
 
 const FeatureContainer = styled(Container)(({ theme }) => ({
   display: "flex",
@@ -117,34 +111,6 @@ const TabSubtext = styled(Typography)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightMedium,
 }));
 
-const FeatureCard = styled(Grid)(() => ({
-  display: "flex",
-  flexDirection: "column",
-  flexGrow: 0,
-}));
-
-const CardHeader = styled(Grid)(() => ({
-  display: "flex",
-  alignItems: "center",
-  gap: "6px",
-}));
-
-const CardImage = styled("img")(() => ({
-  width: "35px",
-  height: "35px",
-}));
-
-const StyledList = styled(List)(() => ({
-  padding: "15px",
-}));
-
-const StyledListItem = styled(ListItem)(() => ({
-  display: "list-item",
-  listStyleType: "disc",
-  padding: "2px 0",
-  fontSize: "12px",
-}));
-
 const Features = () => {
   return (
     <FeatureContainer maxWidth="lg">
@@ -189,93 +155,26 @@ const Features = () => {
         </FeatureHighlight>
 
         <FeatureDetails container>
-          <FeatureCard size={{ xs: 12, sm: 3.9 }}>
-            <CardHeader>
-              <CardImage src="https://img.icons8.com/color/96/artificial-intelligence.png" />
-              <TabTitle>AI Story Generation</TabTitle>
-            </CardHeader>
-            <StyledList>
-              <StyledListItem>
-                A unique, personalized superhero story
-              </StyledListItem>
-              <StyledListItem>
-                Always creative, fun, and age-appropriate
-              </StyledListItem>
-            </StyledList>
-          </FeatureCard>
+          <FeatureItemCard
+            icon="https://img.icons8.com/color/96/artificial-intelligence.png"
+            title="AI Story Generation"
+            p1="A unique, personalized superhero story"
+            p2="Always creative, fun, and age-appropriate"
+          ></FeatureItemCard>
 
-          <FeatureCard size={{ xs: 12, sm: 3.9 }}>
-            <CardHeader>
-              <CardImage src="https://img.icons8.com/color/96/artificial-intelligence.png" />
-              <TabTitle>Download as PDF</TabTitle>
-            </CardHeader>
-            <StyledList>
-              <StyledListItem>
-                nstantly download as a print-ready PDF
-              </StyledListItem>
-              <StyledListItem>
-                Easy to read, share, or save as keepsake
-              </StyledListItem>
-            </StyledList>
-          </FeatureCard>
+          <FeatureItemCard
+            icon="https://img.icons8.com/color/96/artificial-intelligence.png"
+            title="AI Story Generation"
+            p1="A unique, personalized superhero story"
+            p2="Always creative, fun, and age-appropriate"
+          ></FeatureItemCard>
 
-          <FeatureCard size={{ xs: 12, sm: 3.9 }}>
-            <CardHeader>
-              <CardImage src="https://img.icons8.com/color/96/artificial-intelligence.png" />
-              <TabTitle>Illustrated Scenes</TabTitle>
-            </CardHeader>
-            <StyledList>
-              <StyledListItem>
-                Generates superhero stories with AI.
-              </StyledListItem>
-              <StyledListItem>
-                Personalizes content based on input.
-              </StyledListItem>
-            </StyledList>
-          </FeatureCard>
-
-          <FeatureCard size={{ xs: 12, sm: 3.9 }}>
-            <CardHeader>
-              <CardImage src="https://img.icons8.com/color/96/artificial-intelligence.png" />
-              <TabTitle>Print-on-Demand Book</TabTitle>
-            </CardHeader>
-            <StyledList>
-              <StyledListItem>
-                Order a printed, high-quality book.
-              </StyledListItem>
-              <StyledListItem>Delivered right to your home.</StyledListItem>
-            </StyledList>
-          </FeatureCard>
-
-          <FeatureCard size={{ xs: 12, sm: 3.9 }}>
-            <CardHeader>
-              <CardImage src="https://img.icons8.com/color/96/artificial-intelligence.png" />
-              <TabTitle>Family & Friends Integration</TabTitle>
-            </CardHeader>
-            <StyledList>
-              <StyledListItem>
-                Add parents, siblings, and friends to the story.
-              </StyledListItem>
-              <StyledListItem>
-                Makes every tale feel warm and personal
-              </StyledListItem>
-            </StyledList>
-          </FeatureCard>
-
-          <FeatureCard size={{ xs: 12, sm: 3.9 }}>
-            <CardHeader>
-              <CardImage src="https://img.icons8.com/color/96/artificial-intelligence.png" />
-              <TabTitle>Illustrated Scenes</TabTitle>
-            </CardHeader>
-            <StyledList>
-              <StyledListItem>
-                Generates superhero stories with AI.
-              </StyledListItem>
-              <StyledListItem>
-                Personalizes content based on input.
-              </StyledListItem>
-            </StyledList>
-          </FeatureCard>
+          <FeatureItemCard
+            icon="https://img.icons8.com/color/96/artificial-intelligence.png"
+            title="AI Story Generation"
+            p1="A unique, personalized superhero story"
+            p2="Always creative, fun, and age-appropriate"
+          ></FeatureItemCard>
         </FeatureDetails>
       </Wrapper>
     </FeatureContainer>

@@ -2,7 +2,7 @@ import React from "react";
 import Home from "./pages/Home/Home";
 import { ColorModeContext, useMode } from "./utils/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import Navbar from './component/global/Navbar';
+import Navbar from './component/global/NavBar/Navbar';
 
 const App = () => {
   const [theme, colorMode] = useMode();

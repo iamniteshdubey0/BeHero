@@ -39,9 +39,7 @@ function a11yProps(index) {
   };
 }
 
-const TabContainer = styled(Grid)(({}) => ({
-
-}));
+const TabContainer = styled(Grid)(({}) => ({}));
 
 export default function VerticalTabs() {
   const [value, setValue] = React.useState(0);
@@ -59,32 +57,52 @@ export default function VerticalTabs() {
         height: 224,
       }}
     >
-      <Tabs
-        orientation="vertical"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: "divider" }}
-      >
-        <Tab label="Item One" {...a11yProps(0)} />
-        <Tab label="Item Two" {...a11yProps(1)} />
-        <Tab label="Item Three" {...a11yProps(2)} />
-        <Tab label="Item Four" {...a11yProps(3)} />
-      </Tabs>
-      <TabPanel value={value} index={0}>
-        <TabContainer>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, quo cumque. Id in maiores, exercitationem debitis, ipsam est tempore neque sint numquam, ratione ab. Laboriosam recusandae molestias pariatur eligendi. Autem praesentium amet minus harum atque fuga consequuntur deserunt. Saepe, consequuntur?
-        </TabContainer>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel>
+      <Grid container>
+        <Grid size={2}>
+          <Tabs
+            orientation="vertical"
+            value={value}
+            onChange={handleChange}
+            aria-label="Vertical tabs example"
+            sx={{ borderRight: 1, borderColor: "divider" }}
+          >
+            <Tab label="Item One" {...a11yProps(0)} />
+            <Tab label="Item Two" {...a11yProps(1)} />
+            <Tab label="Item Three" {...a11yProps(2)} />
+            <Tab label="Item Four" {...a11yProps(3)} />
+          </Tabs>
+        </Grid>
+        <Grid size={9}>
+          <TabPanel value={value} index={0}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, quo
+            cumque. Id in maiores, exercitationem debitis, ipsam est tempore
+            neque sint numquam, ratione ab. Laboriosam recusandae molestias
+            pariatur eligendi. Autem praesentium amet minus harum atque fuga
+            consequuntur deserunt. Saepe, consequuntur?
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, quo
+            cumque. Id in maiores, exercitationem debitis, ipsam est tempore
+            neque sint numquam, ratione ab. Laboriosam recusandae molestias
+            pariatur eligendi. Autem praesentium amet minus harum atque fuga
+            consequuntur deserunt. Saepe, consequuntur?
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, quo
+            cumque. Id in maiores, exercitationem debitis, ipsam est tempore
+            neque sint numquam, ratione ab. Laboriosam recusandae molestias
+            pariatur eligendi. Autem praesentium amet minus harum atque fuga
+            consequuntur deserunt. Saepe, consequuntur?
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, quo
+            cumque. Id in maiores, exercitationem debitis, ipsam est tempore
+            neque sint numquam, ratione ab. Laboriosam recusandae molestias
+            pariatur eligendi. Autem praesentium amet minus harum atque fuga
+            consequuntur deserunt. Saepe, consequuntur?
+          </TabPanel>
+        </Grid>
+      </Grid>
     </Box>
   );
 }
