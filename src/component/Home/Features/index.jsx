@@ -9,7 +9,7 @@ const FeatureContainer = styled(Container)(({ theme }) => ({
   alignItems: "flex-start",
   padding: "5px",
   width: "100%",
-  height: "100vh",
+  maxHeight: "100vh",
   overflow: "hidden",
   marginTop: "40px",
 }));

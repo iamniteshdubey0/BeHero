@@ -12,6 +12,11 @@ import { createTheme } from "@mui/material/styles";
 // #AD49E1
 // #EBD3F8
 // #FBFBFB
+// #00DFA2
+// #F6FA70
+
+//
+//
 
 export const tokens = (mode) => ({
   ...(mode === "dark"
@@ -60,7 +65,7 @@ export const tokens = (mode) => ({
           800: "#451d5a",
           900: "#230f2d",
         },
-        yellow: {
+        paleLavender: {
           100: "#fbf6fe",
           200: "#f7edfc",
           300: "#f3e5fb",
@@ -81,6 +86,28 @@ export const tokens = (mode) => ({
           700: "#979797",
           800: "#646464",
           900: "#323232",
+        },
+        green: {
+          100: "#ccf9ec",
+          200: "#99f2da",
+          300: "#66ecc7",
+          400: "#33e5b5",
+          500: "#00dfa2",
+          600: "#00b282",
+          700: "#008661",
+          800: "#005941",
+          900: "#002d20",
+        },
+        yellow: {
+          100: "#fdfee2",
+          200: "#fbfdc6",
+          300: "#fafca9",
+          400: "#f8fb8d",
+          500: "#f6fa70",
+          600: "#c5c85a",
+          700: "#949643",
+          800: "#62642d",
+          900: "#313216",
         },
       }
     : {
@@ -128,7 +155,7 @@ export const tokens = (mode) => ({
           800: "#deb6f3",
           900: "#efdbf9",
         },
-        yellow: {
+        paleLavender: {
           100: "#2f2a32",
           200: "#5e5463",
           300: "#8d7f95",
@@ -149,6 +176,28 @@ export const tokens = (mode) => ({
           700: "#fdfdfd",
           800: "#fdfdfd",
           900: "#fefefe",
+        },
+        green: {
+          100: "#002d20",
+          200: "#005941",
+          300: "#008661",
+          400: "#00b282",
+          500: "#00dfa2",
+          600: "#33e5b5",
+          700: "#66ecc7",
+          800: "#99f2da",
+          900: "#ccf9ec",
+        },
+        yellow: {
+          100: "#313216",
+          200: "#62642d",
+          300: "#949643",
+          400: "#c5c85a",
+          500: "#f6fa70",
+          600: "#f8fb8d",
+          700: "#fafca9",
+          800: "#fbfdc6",
+          900: "#fdfee2",
         },
       }),
 });
