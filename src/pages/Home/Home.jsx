@@ -6,6 +6,8 @@ import Tutorial from "../../component/Home/Tutorial/Tutorial";
 import Testimonials from "../../component/Home/Testimonials";
 import TestimonialsSection from "../../component/Home/Testimonials/Testimonials2";
 import HowItWorks from "../../component/Home/Tutorial/HowItWroks";
+import Pricing from "../../component/Home/Pricing";
+import ContactSection from "../../component/Home/Conatct";
 
 const Home = () => {
   return (
@@ -17,6 +19,8 @@ const Home = () => {
       <HowItWorks></HowItWorks>
       {/* <Testimonials></Testimonials> */}
       <TestimonialsSection></TestimonialsSection>
+      <Pricing></Pricing>
+      <ContactSection></ContactSection>
     </>
   );
 };

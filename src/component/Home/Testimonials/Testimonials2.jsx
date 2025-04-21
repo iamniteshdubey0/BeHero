@@ -4,10 +4,12 @@ import {
   Typography,
   Grid,
   Avatar,
-  Button,
   useTheme,
+  Container,
+  styled,
 } from "@mui/material";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import SectionHeader2 from "../../Elements/SectionHeader2";
 
 const testimonials = [
   {
@@ -67,117 +69,141 @@ const testimonials = [
   },
 ];
 
-const AnimatedCard = motion(Box);
+const TestimonialsContainer = styled(Container)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  padding: "5px",
+  width: "100%",
+  minHeight: "100vh",
+  overflow: "hidden",
+  marginTop: "30px",
+  textAlign: "center",
+}));
+
+const Wrapper = styled(Grid)(({ theme }) => ({
+  justifyContent: "center",
+  alignItems: "flex-start",
+  marginTop: "60px",
+  position: "relative",
+  width: "100%",
+  padding: "40px 20px"
+}));
+
+const CardsWrapper = styled(Grid)(({ theme, idx }) => ({
+  display: "flex",
+  justifyContent: "center",
+  flexDirection: "column",
+  alignItems: "center",
+  position: "relative",
+  margin: "2px",
+  zIndex: 1,
+  opacity:0.9,
+  transform:
+    idx % 5 === 0
+      ? "translateY(0px)"
+      : idx % 5 === 1
+      ? "translateY(-80px)"
+      : idx % 5 === 2
+      ? "translateY(-40px)"
+      : idx % 5 === 3
+      ? "translateY(20px)"
+      : "translateY(-60px)",
+  "&:hover": {
+    zIndex: 1000
+  },
+  transition: "transform 0.3s ease",
+}));
+
+const TestimonialCard = styled(Box)(() => ({
+  position: "relative",
+  width: "140px",
+  height: "160px",
+  borderRadius: "16px",
+  overflow: "visible",
+  cursor: "pointer",
+  backgroundColor: "white",
+  zIndex: 1,
+}));
+
+const CardImg = styled(Avatar)(({}) => ({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  borderRadius: "8px",
+  zIndex: 10,
+}));
+
+const DropBox = styled(Box)(({}) => ({
+  marginTop: "4px",
+  padding: "12px",
+  width: "160px",
+  backgroundColor: "white",
+  borderRadius: "8px",
+  position: "absolute",
+  bottom: "-80px",
+  zIndex: 1000,
+  boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+}));
+
+const AnimatedCard = motion(TestimonialCard);
 
 const TestimonialSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const theme = useTheme();
 
   return (
-    <Box
-      sx={{
-        padding: "50px 20px",
-        backgroundColor: theme.palette.background.default,
-        textAlign: "center",
-        borderRadius: "32px",
-        overflow: "hidden",
-      }}
-    >
-      <Typography variant="subtitle2" gutterBottom>
-        Testimonials
-      </Typography>
-      <Typography variant="h4" fontWeight="bold">
-        Trusted by leaders
-      </Typography>
-      <Typography variant="h5" sx={{ color: "gray" }}>
-        from various industries
-      </Typography>
-      <Typography variant="body1" mt={2} mb={4}>
-        Learn why professionals trust our solutions to complete their customer
-        journeys.
-      </Typography>
-      <Button variant="contained">Read Success Stories →</Button>
-
-      <Grid
-        container
-        spacing={3}
-        justifyContent="center"
-        alignItems="flex-start"
-        mt={6}
-        sx={{ position: "relative", width: "100%" }}
-      >
+    <TestimonialsContainer maxWidth="lg">
+      <SectionHeader2
+        Sname="Testimonial"
+        title="Trusted by parents"
+        subtitle="from various industries"
+      ></SectionHeader2>
+      <Wrapper container spacing={6}>
         {testimonials.map((testimonial, index) => (
-          <Grid
-            item
+          <CardsWrapper
+            idx={index}
             key={index}
-            xs={6}
-            sm={4}
-            md={2}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
-              alignItems: "center",
-              transform:
-                index % 5 === 1
-                  ? "translateY(40px)"
-                  : index % 5 === 2
-                  ? "translateY(80px)"
-                  : index % 5 === 3
-                  ? "translateY(40px)"
-                  : "translateY(0)",
-              transition: "transform 0.3s ease",
-            }}
+            size={{ xs: 6, sm: 4, md: 2 }}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
             <AnimatedCard
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              sx={{
-                position:'relative',
-                width: 120,
-                height: 150,
-                borderRadius: 4,
-                overflow: "hidden",
-                cursor: "pointer",
-                boxShadow: 4,
-                backgroundColor: "white",
-                zIndex:10,
-              }}
+              sx={{ boxShadow: 4 }}
             >
-              <Avatar
-                src={testimonial.avatar}
-                alt={testimonial.name}
-                sx={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
+              <CardImg src={testimonial.avatar} alt={testimonial.name} />
             </AnimatedCard>
-            {hoveredIndex === index && (
-              <Box
-                sx={{
-                  mt: 1,
-                  p: 2,
-                  width: 160,
-                  bgcolor: "white",
-                  borderRadius: 2,
-                  boxShadow: 3,
-                  position: "absolute",
-                  zIndex: 20,
-                  bottom:-60,
-                }}
-              >
-                <Typography variant="subtitle2" fontWeight="bold">
-                  {testimonial.name}
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
-                  {testimonial.quote}
-                </Typography>
-              </Box>
-            )}
-          </Grid>
+
+            <AnimatePresence>
+              {hoveredIndex === index && (
+                <motion.div
+                  initial={{ opacity: 0, x: 0 }}
+                  animate={{ opacity: 1, x: 30 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ position: "absolute", zIndex: 100 }}
+                >
+                  <DropBox
+                    sx={{
+                      boxShadow: 3,
+                      zIndex: hoveredIndex === index ? 100 : 10,
+                    }}
+                  >
+                    <Typography variant="subtitle2" fontWeight="bold">
+                      {testimonial.name}
+                    </Typography>
+                    <Typography variant="body2" sx={{ mt: 1 }}>
+                      {testimonial.quote}
+                    </Typography>
+                  </DropBox>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </CardsWrapper>
         ))}
-      </Grid>
-    </Box>
+      </Wrapper>
+    </TestimonialsContainer>
   );
 };
 
