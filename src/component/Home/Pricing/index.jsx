@@ -115,9 +115,9 @@ const PriceCard = styled(Card)(({ theme, bg }) => ({
       ? `linear-gradient(157deg, ${tokens("light")[bg][900]} 0%, ${
           tokens("light").white[800]
         } 44%)`
-      : `linear-gradient(157deg, ${tokens("dark")[bg][600]} 0%, ${
-          tokens("dark").darkPurple[500]
-        } 80%)`,
+      : `linear-gradient(157deg, ${tokens("dark")[bg][800]} 0%, ${
+          tokens("dark").darkPurple[600]
+        } 60%)`,
 
   padding: "2px",
   position: "relative",
@@ -139,7 +139,10 @@ const CardUpper = styled(Stack)(() => ({}));
 
 const CardLower = styled(Stack)(() => ({}));
 
-const CardTitle = styled(Typography)(({ theme }) => ({}));
+const CardTitle = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography.h6,
+  fontWeight: theme.typography.fontWeightMedium,
+}));
 const CardPrice = styled(Typography)(({ theme }) => ({}));
 const CardPerson = styled(Typography)(({ theme }) => ({}));
 const CardSubtitle = styled(Typography)(({ theme }) => ({}));
@@ -170,11 +173,9 @@ const PricingPlans = () => {
               bg={plan.bg}
             >
               <CardContent>
-                <Stack spacing={2} alignItems="start">
+                <CardUpper spacing={2} alignItems="start">
                   {plan.badge && <OfferBadge>{plan.badge}</OfferBadge>}
-                  <Typography variant="h5" fontWeight="medium">
-                    {plan.title}
-                  </Typography>
+                  <CardTitle>{plan.title}</CardTitle>
                   <Typography variant="body1" fontWeight="medium">
                     Starts at
                   </Typography>
@@ -189,13 +190,15 @@ const PricingPlans = () => {
                   </Typography>
                   <Button
                     fullWidth
-                    variant="outlined"
+                    variant={plan.title === "Teams" ? "contained" : "outlined"}
                     sx={{ borderRadius: 2, mt: 1, boxShadow: 3 }}
+                    color="primary"
                   >
                     {plan.button}
                   </Button>
-
-                  <Divider sx={{ width: "100%" }} />
+                </CardUpper>
+                {/* <Divider sx={{ width: "100%" }} /> */}
+                <CardLower spacing={2} alignItems="start">
                   <Typography
                     variant="body1"
                     color="text.secondary"
@@ -214,7 +217,7 @@ const PricingPlans = () => {
                       </li>
                     ))}
                   </ul>
-                </Stack>
+                </CardLower>
               </CardContent>
             </MotionPriceCard>
           </CardCol>
