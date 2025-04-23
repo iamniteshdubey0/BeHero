@@ -126,7 +126,7 @@ const PriceCard = styled(Card)(({ theme, bg }) => ({
 
 const OfferBadge = styled(Typography)(({ theme }) => ({
   fontSize: "10px",
-  background: "#000",
+  background: tokens(theme.palette.mode).primary[500],
   color: "#fff",
   padding: "6px 12px",
   borderRadius: "8px",
@@ -135,18 +135,18 @@ const OfferBadge = styled(Typography)(({ theme }) => ({
   left: "32%",
 }));
 
-const CardUpper = styled(Stack)(() => ({}));
+const CardUpper = styled(Stack)(() => ({
+  padding: "5px",
+}));
 
-const CardLower = styled(Stack)(() => ({}));
+const CardLower = styled(Stack)(() => ({
+  padding: "5px",
+}));
 
 const CardTitle = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.h6,
   fontWeight: theme.typography.fontWeightMedium,
 }));
-const CardPrice = styled(Typography)(({ theme }) => ({}));
-const CardPerson = styled(Typography)(({ theme }) => ({}));
-const CardSubtitle = styled(Typography)(({ theme }) => ({}));
-const CardDescription = styled(Typography)(({ theme }) => ({}));
 
 const MotionPriceCard = motion.create(PriceCard);
 

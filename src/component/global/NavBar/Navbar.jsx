@@ -16,7 +16,7 @@ const NavContainer = styled(Container)(({ theme }) => ({
   top: 20,
   backgroundColor:
     theme.palette.mode === "light"
-      ? tokens(theme.palette.mode).yellow[800]
+      ? tokens(theme.palette.mode).white[600]
       : tokens(theme.palette.mode).darkPurple[600],
   padding: "7px 20px",
   boxShadow: theme.shadows[1],

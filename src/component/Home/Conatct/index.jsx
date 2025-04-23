@@ -7,34 +7,106 @@ import {
   Button,
   Stack,
   Paper,
-  Divider,
+  styled,
+  Container,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import PhoneIcon from "@mui/icons-material/Phone";
-import EmailIcon from "@mui/icons-material/Email";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { tokens } from "../../../utils/theme";
+import { ContactData } from "../../../constants/UIConstant";
+
+const ContactContainer = styled(Container)(({ theme }) => ({
+  padding: "40px 40px",
+  background:
+    theme.palette.mode === "light"
+      ? `linear-gradient(to bottom right, ${
+          tokens(theme.palette.mode).green[900]
+        }, ${tokens(theme.palette.mode).white[700]})`
+      : `linear-gradient(to bottom right, ${
+          tokens(theme.palette.mode).darkPurple[600]
+        }, ${tokens(theme.palette.mode).darkPurple[800]})`,
+}));
+
+const ContactHeader = styled(Stack)(({}) => ({
+  textAlign: "center",
+  marginBottom: "24px",
+}));
+
+const Heading = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography.h4.fontSize,
+  fontWeight: theme.typography.fontWeightBold,
+}));
+
+const Text = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography.body1.fontSize,
+  fontWeight: theme.typography.fontWeightRegular,
+}));
+
+const ContactFormContainer = styled(Grid)(({}) => ({
+  justifyContent: "center",
+}));
+
+const FormBox = styled(Paper)(() => ({
+  padding: "2px",
+  borderRadius: "16px",
+  overflow: "hidden",
+  display: "flex",
+  flexDirection: { xs: "column", md: "row" },
+}));
+
+const ContactInfoBox = styled(Box)(({ theme }) => ({
+  backgroundColor: tokens(theme.palette.mode).green[600],
+  color: "white",
+  padding: "16px",
+  flex: 1,
+  borderRadius: "16px",
+}));
+
+const ContactInfoHeading = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography.h6.fontSize,
+  fontWeight: theme.typography.fontWeightBold,
+}));
+
+const ContactInfoText = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography.body2.fontSize,
+  fontWeight: theme.typography.fontWeightRegular,
+  marginBottom: "12px",
+}));
+
+const ContactInfoMainText = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography.h6.fontSize,
+  fontWeight: theme.typography.fontWeightRegular,
+}));
+
+const ContactFromBox = styled(Box)(({ theme }) => ({
+  backgroundColor: tokens(theme.palette.mode).white[600],
+  padding: "16px",
+  flex: 2,
+}));
+
+const TextFieldLabel = styled(Box)(({ theme }) => ({
+  fontSize: theme.typography.caption.fontSize,
+  fontWeight: theme.typography.fontWeightBold,
+}));
+
+const TextFieldStyled = styled(TextField)(({ theme }) => ({
+  marginTop: "4px",
+  borderBottom: "1px solid #00bfa5",
+  paddingBottom: "8px",
+}));
 
 const ContactSection = () => {
   return (
-    <Box
-      sx={{
-        background: "linear-gradient(to bottom right, #eafaf8, #ffffff)",
-        py: 10,
-        px: 2,
-      }}
-    >
-      <Stack spacing={2} textAlign="center" mb={6}>
-        <Typography variant="h4" fontWeight="bold">
-          Get In Touch
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
+    <ContactContainer maxWidth="xl">
+      <ContactHeader spacing={2}>
+        <Heading>Get In Touch</Heading>
+        <Text color="text.secondary">
           We’ll create high-quality linkable content and build at least 40
-          high-authority links to each asset, paving the way for you to grow
-          your rankings, improve brand.
-        </Typography>
-      </Stack>
+          high-authority links to each asset, <br /> paving the way for you to
+          grow your rankings, improve brand.
+        </Text>
+      </ContactHeader>
 
-      <Grid container justifyContent="center">
+      <ContactFormContainer container justifyContent="center">
         <Grid
           size={{ xs: 12, md: 10 }}
           component={motion.div}
@@ -42,100 +114,55 @@ const ContactSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Paper
-            elevation={3}
-            sx={{
-              borderRadius: 4,
-              overflow: "hidden",
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-            }}
-          >
+          <FormBox elevation={3}>
             {/* Contact Info */}
-            <Box
-              sx={{ backgroundColor: "#00bfa5", color: "white", p: 4, flex: 1 }}
-            >
-              <Typography variant="h6" fontWeight="bold" gutterBottom>
+            <ContactInfoBox>
+              <ContactInfoHeading gutterBottom>
                 Contact Information
-              </Typography>
-              <Typography variant="body2" mb={3}>
+              </ContactInfoHeading>
+              <ContactInfoText>
                 We’ll create high-quality linkable content and build at least 40
                 high-authority.
-              </Typography>
+              </ContactInfoText>
               <Stack spacing={2}>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <PhoneIcon />
-                  <Typography>+8801779717686</Typography>
-                </Stack>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <PhoneIcon />
-                  <Typography>+988678363686</Typography>
-                </Stack>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <EmailIcon />
-                  <Typography>Support@uprankly.com</Typography>
-                </Stack>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <LocationOnIcon />
-                  <Typography>New York, USA</Typography>
-                </Stack>
+                {ContactData &&
+                  ContactData.info.mode.map((item, index) => (
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      alignItems="center"
+                      key={index}
+                    >
+                      {item.icon}
+                      <ContactInfoMainText>{item.text}</ContactInfoMainText>
+                    </Stack>
+                  ))}
               </Stack>
-            </Box>
+            </ContactInfoBox>
 
             {/* Contact Form */}
-            <Box sx={{ flex: 2, p: 4, backgroundColor: "white" }}>
+            <ContactFromBox>
               <Grid container spacing={2}>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <Typography variant="caption" fontWeight="bold">
-                    Your Name
-                  </Typography>
-                  <TextField
-                    variant="standard"
-                    fullWidth
-                    defaultValue="John Trangely"
-                    InputProps={{ disableUnderline: true }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <Typography variant="caption" fontWeight="bold">
-                    Your Email
-                  </Typography>
-                  <TextField
-                    variant="standard"
-                    fullWidth
-                    defaultValue="hello@nurency.com"
-                    InputProps={{ disableUnderline: true }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12 }}>
-                  <Typography variant="caption" fontWeight="bold">
-                    Your Subject
-                  </Typography>
-                  <TextField
-                    variant="standard"
-                    fullWidth
-                    defaultValue="I want to hire you quickly"
-                    InputProps={{ disableUnderline: true }}
-                  />
-                </Grid>
-                <Grid size={{ xs: 12 }}>
-                  <Typography
-                    variant="caption"
-                    fontWeight="bold"
-                    color="#00bfa5"
-                  >
-                    Message
-                  </Typography>
-                  <TextField
-                    variant="standard"
-                    fullWidth
-                    placeholder="Write here your message"
-                    multiline
-                    rows={3}
-                    InputProps={{ disableUnderline: true }}
-                    sx={{ mt: 1, borderBottom: "2px solid #00bfa5", pb: 1 }}
-                  />
-                </Grid>
+                {ContactData &&
+                  ContactData.ui.map((item, index) => (
+                    <Grid
+                      size={{
+                        xs: 12,
+                        md: ["message", "subject"].includes(item.id) ? 12 : 6,
+                      }}
+                      key={index}
+                    >
+                      <TextFieldLabel>{item.label}</TextFieldLabel>
+                      <TextFieldStyled
+                        variant="standard"
+                        fullWidth
+                        multiline={item.id === "message"}
+                        rows={item.id === "message" ? 3 : undefined}
+                        defaultValue={item.defaultValue}
+                        InputProps={{ disableUnderline: true }}
+                      />
+                    </Grid>
+                  ))}
                 <Grid size={{ xs: 12 }}>
                   <Button
                     variant="contained"
@@ -145,11 +172,11 @@ const ContactSection = () => {
                   </Button>
                 </Grid>
               </Grid>
-            </Box>
-          </Paper>
+            </ContactFromBox>
+          </FormBox>
         </Grid>
-      </Grid>
-    </Box>
+      </ContactFormContainer>
+    </ContactContainer>
   );
 };
 

@@ -238,7 +238,7 @@ export const themeSetting = (mode) => {
               light: colors.pink[100],
             },
             background: {
-              default: colors.yellow[900],
+              default: colors.white[900],
             },
           }),
     },

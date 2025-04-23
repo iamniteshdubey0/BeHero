@@ -26,8 +26,8 @@ const FeatureHighlight = styled(Grid)(({ theme }) => ({
   height: "200px",
   backgroundColor:
     theme.palette.mode === "light"
-      ? tokens(theme.palette.mode).yellow[600]
-      : tokens(theme.palette.mode).darkPurple[600],
+      ? tokens(theme.palette.mode).green[800]
+      : tokens(theme.palette.mode).darkPurple[500],
   borderRadius: "20px",
   display: "flex",
   justifyContent: "center",
@@ -40,8 +40,8 @@ const FeatureDetails = styled(Grid)(({ theme }) => ({
   padding: "10px 30px",
   backgroundColor:
     theme.palette.mode === "light"
-      ? tokens(theme.palette.mode).yellow[600]
-      : tokens(theme.palette.mode).darkPurple[600],
+      ? tokens(theme.palette.mode).green[800]
+      : tokens(theme.palette.mode).darkPurple[500],
   borderRadius: "20px",
   display: "flex",
   justifyContent: "space-between",
@@ -75,8 +75,8 @@ const DividerY = styled("div")(({ theme }) => ({
   height: "40%",
   backgroundColor:
     theme.palette.mode === "light"
-      ? tokens(theme.palette.mode).yellow[400]
-      : tokens(theme.palette.mode).darkPurple[800],
+      ? tokens(theme.palette.mode).green[400]
+      : tokens(theme.palette.mode).darkPurple[600],
   margin: "0 16px",
   borderRadius: "4px",
 }));
@@ -91,7 +91,10 @@ const FeatureTab = styled(Grid)(({ theme }) => ({
   cursor: "pointer",
   gap: "10px",
   "&:hover": {
-    backgroundColor: tokens(theme.palette.mode).primary[600],
+    backgroundColor:
+      theme.palette.mode === "light"
+        ? tokens(theme.palette.mode).green[700]
+        : tokens(theme.palette.mode).darkPurple[600],
     color: tokens(theme.palette.mode).white[600],
   },
 }));

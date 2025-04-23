@@ -2,9 +2,7 @@ import React from "react";
 import Hero from "../../component/Home/Hero";
 import Gallery from "../../component/Home/Gallery";
 import Features from "../../component/Home/Features";
-import Tutorial from "../../component/Home/Tutorial/Tutorial";
-import Testimonials from "../../component/Home/Testimonials";
-import TestimonialsSection from "../../component/Home/Testimonials/Testimonials2";
+import TestimonialsSection from "../../component/Home/Testimonials";
 import HowItWorks from "../../component/Home/Tutorial/HowItWroks";
 import Pricing from "../../component/Home/Pricing";
 import ContactSection from "../../component/Home/Conatct";
@@ -15,9 +13,7 @@ const Home = () => {
       <Hero></Hero>
       <Gallery></Gallery>
       <Features></Features>
-      {/* <Tutorial></Tutorial> */}
       <HowItWorks></HowItWorks>
-      {/* <Testimonials></Testimonials> */}
       <TestimonialsSection></TestimonialsSection>
       <Pricing></Pricing>
       <ContactSection></ContactSection>
