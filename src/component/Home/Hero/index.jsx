@@ -192,7 +192,7 @@ const Hero = () => {
           <RoundButton
             size="large"
             label="get started"
-            bgColor="primary"
+            bgColor="green"
             icon={<ArrowForwardIcon />}
           ></RoundButton>
         </HeroHeader>

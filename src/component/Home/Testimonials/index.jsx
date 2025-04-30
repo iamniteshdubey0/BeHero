@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionHeader2 from "../../Elements/SectionHeader2";
+import { tokens } from "../../../utils/theme";
+import "@fontsource/indie-flower";
 
 const testimonials = [
   {
@@ -86,7 +88,7 @@ const Wrapper = styled(Grid)(({ theme }) => ({
   marginTop: "60px",
   position: "relative",
   width: "100%",
-  padding: "40px 20px"
+  padding: "40px 20px",
 }));
 
 const CardsWrapper = styled(Grid)(({ theme, idx }) => ({
@@ -97,7 +99,7 @@ const CardsWrapper = styled(Grid)(({ theme, idx }) => ({
   position: "relative",
   margin: "2px",
   zIndex: 1,
-  opacity:0.9,
+  opacity: 0.9,
   transform:
     idx % 5 === 0
       ? "translateY(0px)"
@@ -109,7 +111,7 @@ const CardsWrapper = styled(Grid)(({ theme, idx }) => ({
       ? "translateY(20px)"
       : "translateY(-60px)",
   "&:hover": {
-    zIndex: 1000
+    zIndex: 1000,
   },
   transition: "transform 0.3s ease",
 }));
@@ -133,16 +135,31 @@ const CardImg = styled(Avatar)(({}) => ({
   zIndex: 10,
 }));
 
-const DropBox = styled(Box)(({}) => ({
+const DropBox = styled(Box)(({ theme }) => ({
   marginTop: "4px",
   padding: "12px",
   width: "160px",
-  backgroundColor: "white",
+  backgroundColor:
+    theme.palette.mode === "light"
+      ? tokens(theme.palette.mode).white[800]
+      : tokens(theme.palette.mode).darkPurple[600],
   borderRadius: "8px",
   position: "absolute",
   bottom: "-80px",
   zIndex: 1000,
   boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+}));
+
+const DropBoxTitle = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography.subtitle2.fontSize,
+  fontWeight: theme.typography.fontWeightBold,
+}));
+
+const DropBoxText = styled(Typography)(({ theme }) => ({
+  marginTop:'8px',
+  fontSize: theme.typography.body1.fontSize,
+  fontWeight: theme.typography.fontWeightMedium,
+  fontFamily: '"Indie Flower", cursive',
 }));
 
 const AnimatedCard = motion(TestimonialCard);
@@ -190,12 +207,8 @@ const TestimonialSection = () => {
                       zIndex: hoveredIndex === index ? 100 : 10,
                     }}
                   >
-                    <Typography variant="subtitle2" fontWeight="bold">
-                      {testimonial.name}
-                    </Typography>
-                    <Typography variant="body2" sx={{ mt: 1 }}>
-                      {testimonial.quote}
-                    </Typography>
+                    <DropBoxTitle>{testimonial.name}</DropBoxTitle>
+                    <DropBoxText>{testimonial.quote}</DropBoxText>
                   </DropBox>
                 </motion.div>
               )}

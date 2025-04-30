@@ -16,7 +16,7 @@ const StyledButton = styled(Button, {
   position: "relative",
   zIndex: 2,
   backgroundColor: "transparent",
-  border: `1px solid ${tokens(theme.palette.mode)[bgColor]?.[600] || "#ccc"}`,
+  border: `2px solid ${tokens(theme.palette.mode)[bgColor]?.[600] || "#ccc"}`,
   color: tokens(theme.palette.mode)[bgColor]?.[600] || "#000",
   borderRadius: "30px",
   padding: "0.4rem 1.2rem",
@@ -54,7 +54,7 @@ const RoundButton = ({ label, bgColor, icon, size }) => {
         bgColor={bgColor}
         sx={{
           color: tokens(theme.palette.mode)[bgColor]?.[600],
-          border: `1px solid ${tokens(theme.palette.mode)[bgColor]?.[600]}`,
+          border: `2px solid ${tokens(theme.palette.mode)[bgColor]?.[600]}`,
           "&:hover": {
             color:
               theme.palette.mode === "light"
@@ -62,8 +62,8 @@ const RoundButton = ({ label, bgColor, icon, size }) => {
                 : tokens(theme.palette.mode).white[400],
             border:
               theme.palette.mode === "light"
-                ? `1px solid ${tokens(theme.palette.mode).white[600]}`
-                : `1px solid ${tokens(theme.palette.mode).white[400]}`,
+                ? `2px solid ${tokens(theme.palette.mode).white[600]}`
+                : `2px solid ${tokens(theme.palette.mode).white[400]}`,
             backgroundColor: "transparent",
           },
         }}

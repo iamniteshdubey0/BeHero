@@ -45,12 +45,17 @@ const ContactFormContainer = styled(Grid)(({}) => ({
   justifyContent: "center",
 }));
 
-const FormBox = styled(Paper)(() => ({
+const FormBox = styled(Paper)(({theme}) => ({
   padding: "2px",
   borderRadius: "16px",
   overflow: "hidden",
   display: "flex",
   flexDirection: { xs: "column", md: "row" },
+  backgroundColor:
+  theme.palette.mode === "light"
+    ? tokens(theme.palette.mode).white[600]
+    : tokens(theme.palette.mode).darkPurple[800],
+
 }));
 
 const ContactInfoBox = styled(Box)(({ theme }) => ({
@@ -78,7 +83,10 @@ const ContactInfoMainText = styled(Typography)(({ theme }) => ({
 }));
 
 const ContactFromBox = styled(Box)(({ theme }) => ({
-  backgroundColor: tokens(theme.palette.mode).white[600],
+  backgroundColor:
+    theme.palette.mode === "light"
+      ? tokens(theme.palette.mode).white[600]
+      : tokens(theme.palette.mode).darkPurple[500],
   padding: "16px",
   flex: 2,
 }));
