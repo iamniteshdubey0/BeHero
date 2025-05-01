@@ -10,15 +10,9 @@ import {
   Container,
 } from "@mui/material";
 import { styled } from "@mui/system";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  LinkedIn,
-  Google,
-} from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { tokens } from "../../../utils/theme";
+import { FooterData } from "../../../constants/UIConstant";
 
 const FooterContainer = styled("footer")(({ theme }) => ({
   background:
@@ -73,7 +67,7 @@ const NewsletterText = styled(Typography)(({ theme }) => ({
   color:
     theme.palette.mode === "light"
       ? tokens(theme.palette.mode).white[400]
-      : tokens(theme.palette.mode).white[800],
+      : tokens(theme.palette.mode).white[700],
 }));
 
 const NewsletterSmallText = styled(Typography)(({ theme }) => ({
@@ -82,7 +76,7 @@ const NewsletterSmallText = styled(Typography)(({ theme }) => ({
   color:
     theme.palette.mode === "light"
       ? tokens(theme.palette.mode).white[400]
-      : tokens(theme.palette.mode).white[800],
+      : tokens(theme.palette.mode).white[700],
 }));
 
 const InputWrapper = styled("form")(({ theme }) => ({
@@ -126,6 +120,10 @@ const HeaderLogoTitle = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.h6.fontSize,
   fontWeight: theme.typography.fontWeightBold,
   marginBottom: "8px",
+  color:
+    theme.palette.mode === "light"
+      ? tokens(theme.palette.mode).white[100]
+      : tokens(theme.palette.mode).white[600],
 }));
 
 const FooterHeaderText = styled(Typography)(({ theme }) => ({
@@ -135,7 +133,7 @@ const FooterHeaderText = styled(Typography)(({ theme }) => ({
   color:
     theme.palette.mode === "light"
       ? tokens(theme.palette.mode).white[200]
-      : tokens(theme.palette.mode).white[900],
+      : tokens(theme.palette.mode).white[700],
 }));
 
 const FooterPrimarySocialBox = styled(Box)(() => ({
@@ -150,6 +148,10 @@ const FooterLinksHeading = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.subtitle1.fontSize,
   fontWeight: theme.typography.fontWeightBold,
   marginBottom: "4px",
+  color:
+    theme.palette.mode === "light"
+      ? tokens(theme.palette.mode).white[100]
+      : tokens(theme.palette.mode).white[600],
 }));
 
 const FooterLinksText = styled("a")(({ theme }) => ({
@@ -159,7 +161,7 @@ const FooterLinksText = styled("a")(({ theme }) => ({
   color:
     theme.palette.mode === "light"
       ? tokens(theme.palette.mode).white[200]
-      : tokens(theme.palette.mode).white[900],
+      : tokens(theme.palette.mode).white[700],
   cursor: "pointer",
 }));
 
@@ -179,13 +181,9 @@ const Footer = () => {
           <NewsletterImgBox component="img" src="/vacuum.png" alt="vacuum" />
           <NewsletterContentBox>
             <NewsletterHeading>
-              Subscribe to our newsletter to get updates <br /> to our latest
-              collections
+              {FooterData.newsletter.heading}
             </NewsletterHeading>
-            <NewsletterText>
-              Get 20% off on your first order just by subscribing to our
-              newsletter
-            </NewsletterText>
+            <NewsletterText>{FooterData.newsletter.subheading}</NewsletterText>
             <InputWrapper>
               <TextField
                 placeholder="Enter your email"
@@ -202,8 +200,7 @@ const Footer = () => {
               </Button>
             </InputWrapper>
             <NewsletterSmallText variant="caption" mt={1} display="block">
-              You will be able to unsubscribe at any time. Read our privacy
-              policy <a href="#">here</a>.
+              {FooterData.newsletter.text} <a href="#">here</a>.
             </NewsletterSmallText>
           </NewsletterContentBox>
         </NewsletterSection>
@@ -212,81 +209,57 @@ const Footer = () => {
           <Grid size={{ xs: 12, md: 4 }} pr={2}>
             <FooterPrimaryBox>
               <FooterPrimaryHeader>
-                <FooterPrimaryHeaderLogo src="/logo.svg" alt="logo" />
-                <HeaderLogoTitle>Stay Clean</HeaderLogoTitle>
+                <FooterPrimaryHeaderLogo
+                  src={FooterData.main.logo}
+                  alt={FooterData.main.title}
+                />
+                <HeaderLogoTitle>{FooterData.main.title}</HeaderLogoTitle>
               </FooterPrimaryHeader>
-              <FooterHeaderText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit et
-                aliquam, purus sit amet luctus venenatis.
-              </FooterHeaderText>
+              <FooterHeaderText>{FooterData.main.text}</FooterHeaderText>
               <FooterPrimarySocialBox>
-                {[Facebook, Twitter, Instagram, LinkedIn, Google].map(
-                  (Icon, i) => (
-                    <IconButton key={i} size="small">
-                      <Icon fontSize="small" />
-                    </IconButton>
-                  )
-                )}
+                {FooterData.main.socials.map((item, i) => (
+                  <IconButton key={i} size="small" color="textSecondary">
+                    {item.icon}
+                  </IconButton>
+                ))}
               </FooterPrimarySocialBox>
             </FooterPrimaryBox>
           </Grid>
 
-          <FooterLinksBox size={{ xs: 12, md: 2 }}>
-            <FooterLinksHeading variant="subtitle1" fontWeight="bold" mb={1}>
-              Company
+          {FooterData.main.footerLinks.map((item, index) => (
+            <FooterLinksBox key={index} size={{ xs: 12, md: 2 }}>
+              <FooterLinksHeading>{item.name}</FooterLinksHeading>
+              <Stack spacing={1}>
+                {item.links.map((item, index) => (
+                  <FooterLinksText key={index} href={item.link}>
+                    {item.label}
+                  </FooterLinksText>
+                ))}
+              </Stack>
+            </FooterLinksBox>
+          ))}
+
+          <Grid size={{ xs: 12, md: 2 }}>
+            <FooterLinksHeading>
+              {FooterData.main.contact.label}
             </FooterLinksHeading>
             <Stack spacing={1}>
-              <FooterLinksText href="#">About Us</FooterLinksText>
-              <FooterLinksText>Services</FooterLinksText>
-              <FooterLinksText>Community</FooterLinksText>
-              <FooterLinksText>Testimonial</FooterLinksText>
-            </Stack>
-          </FooterLinksBox>
-
-          <Grid size={{ xs: 12, md: 2 }}>
-            <Typography variant="subtitle1" fontWeight="bold" mb={1}>
-              Support
-            </Typography>
-            <Stack spacing={1}>
-              <Typography variant="body2">Help Center</Typography>
-              <Typography variant="body2">Tweet @ Us</Typography>
-              <Typography variant="body2">Webinars</Typography>
-              <Typography variant="body2">Feedback</Typography>
-            </Stack>
-          </Grid>
-
-          <Grid size={{ xs: 12, md: 2 }}>
-            <Typography variant="subtitle1" fontWeight="bold" mb={1}>
-              Links
-            </Typography>
-            <Stack spacing={1}>
-              <Typography variant="body2">Courses</Typography>
-              <Typography variant="body2">Become Teacher</Typography>
-              <Typography variant="body2">Service</Typography>
-              <Typography variant="body2">All in One</Typography>
-            </Stack>
-          </Grid>
-
-          <Grid size={{ xs: 12, md: 2 }}>
-            <Typography variant="subtitle1" fontWeight="bold" mb={1}>
-              Contact Us
-            </Typography>
-            <Stack spacing={1}>
-              <Typography variant="body2">📞 (91) 98765 4321 54</Typography>
-              <Typography variant="body2">📧 support@mail.com</Typography>
+              <FooterLinksText>{FooterData.main.contact.phone}</FooterLinksText>
+              <FooterLinksText>{FooterData.main.contact.email}</FooterLinksText>
             </Stack>
           </Grid>
         </Grid>
 
         <FooterBottom>
           <FooterHeaderText variant="body2">
-            © Copyright by CodedUI. All rights reserved.
+            {FooterData.footerBottom.copyright}
           </FooterHeaderText>
           <Stack direction="row" justifyContent="center" spacing={2} mt={1}>
-            <FooterLinksText variant="body2">Privacy Policy</FooterLinksText>
-            <FooterLinksText variant="body2">Terms of Use</FooterLinksText>
-            <FooterLinksText variant="body2">Legal</FooterLinksText>
-            <FooterLinksText variant="body2">Site Map</FooterLinksText>
+            {FooterData.footerBottom.links.map((item, index) => (
+              <FooterLinksText href={item.link} key={index}>
+                {item.label}
+              </FooterLinksText>
+            ))}
           </Stack>
         </FooterBottom>
       </Container>

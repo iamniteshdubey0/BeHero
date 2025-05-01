@@ -7,6 +7,7 @@ import spaceship from "../assets/space-ship.png";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
 
 export const NavbarData = {
   logo: "https://via.placeholder.com/150",
@@ -125,22 +126,103 @@ export const ContactData = {
     {
       id: "name",
       label: "Your Name",
-      defaultValue:'Nitesg Hudey'
+      defaultValue: "Nitesg Hudey",
     },
     {
       id: "email",
       label: "Your Email",
-      defaultValue:'Niesh@gamilcom'
+      defaultValue: "Niesh@gamilcom",
     },
     {
       id: "subject",
       label: "Your Subject",
-      defaultValue:'Hire You'
+      defaultValue: "Hire You",
     },
     {
       id: "message",
       label: "Your Message",
-      defaultValue:'whats in your mind!'
+      defaultValue: "whats in your mind!",
     },
   ],
+};
+
+export const FooterData = {
+  newsletter: {
+    heading:
+      "Subscribe to our newsletter to get updates to our latest collections",
+    subheading:
+      "Get 20% off on your first order just by subscribing to our newsletter",
+    text: "You will be able to unsubscribe at any time. Read our privacy policy",
+    img: "/images/newsletter_kid.png", // Use actual image path
+  },
+  main: {
+    logo: "/images/logo.png", // Use actual logo image path
+    title: "BeHero",
+    text: "Let the child be the director, and the actor in his own play",
+    socials: [
+      {
+        name: "Instagram",
+        icon: <Instagram />,
+        link: "https://instagram.com/behero",
+      },
+      {
+        name: "Facebook",
+        icon: <Facebook />,
+        link: "https://facebook.com/behero",
+      },
+      {
+        name: "Twitter",
+        icon: <Twitter />,
+        link: "https://twitter.com/behero",
+      },
+      {
+        name: "LinkedIn",
+        icon: <LinkedIn />,
+        link: "https://linkedin.com/company/behero",
+      },
+    ],
+    footerLinks: [
+      {
+        name: "Company",
+        links: [
+          { label: "About Us", link: "#about" },
+          { label: "Our Team", link: "#team" },
+          { label: "Careers", link: "#careers" },
+          { label: "Blog", link: "#blog" },
+        ],
+      },
+      {
+        name: "Support",
+        links: [
+          { label: "Help Center", link: "#help" },
+          { label: "Contact Us", link: "#contact" },
+          { label: "FAQs", link: "#faq" },
+          { label: "Feedback", link: "#feedback" },
+        ],
+      },
+      {
+        name: "Quick Links",
+        links: [
+          { label: "Courses", link: "#courses" },
+          { label: "Become a Teacher", link: "#teach" },
+          { label: "Pricing", link: "#pricing" },
+          { label: "Terms & Conditions", link: "#terms" },
+        ],
+      },
+    ],
+    contact: {
+      label: "Contact",
+      phone: "(91) 98765 4321 54",
+      email: "support@mail.com",
+    },
+  },
+  footerBottom: {
+    copyright: "© Copyright by BeHero. All rights reserved.",
+    links: [
+      { label: "Privacy Policy", link: "#privacy-policy" },
+      { label: "Terms of Use", link: "#terms" },
+      { label: "Legal", link: "#legal" },
+      { label: "Site Map", link: "#sitemap" },
+    ],
+  },
 };
