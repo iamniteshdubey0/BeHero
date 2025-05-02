@@ -14,6 +14,8 @@ import { NavbarData } from "../../../constants/UIConstant";
 const NavContainer = styled(Container)(({ theme }) => ({
   position: "sticky",
   top: 20,
+  marginTop: "16px",
+  borderRadius: "48px",
   backgroundColor:
     theme.palette.mode === "light"
       ? tokens(theme.palette.mode).white[600]
@@ -22,6 +24,11 @@ const NavContainer = styled(Container)(({ theme }) => ({
   boxShadow: theme.shadows[1],
   height: "55px",
   zIndex: 100,
+  [theme.breakpoints.down("md")]: {
+    top: 0,
+    marginTop: "0px",
+    borderRadius: "0px",
+  },
 }));
 
 const NavWrapper = styled(Grid)({
@@ -35,12 +42,19 @@ const NavLogo = styled(Grid)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   flexGrow: 1,
+  [theme.breakpoints.down("md")]: {
+    justifyContent: "flex-start",
+  },
 }));
 
 const Logo = styled("img")(({ theme }) => ({
   width: "40px",
   height: "40px",
   marginRight: theme.spacing(1),
+  [theme.breakpoints.down("md")]: {
+    width: "24px",
+    height: "24px",
+  },
 }));
 
 const LogoText = styled("span")(({ theme }) => ({
@@ -54,6 +68,9 @@ const NavItems = styled(Grid)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   gap: theme.spacing(3),
+  [theme.breakpoints.down("md")]: {
+    display:'none',
+  },
 }));
 
 const NavItem = styled("a")(({ theme }) => ({
@@ -82,7 +99,7 @@ const Navbar = () => {
   const colorMode = useContext(ColorModeContext);
   const theme = useTheme();
   return (
-    <NavContainer maxWidth="lg" sx={{ my: 2, borderRadius: 12 }}>
+    <NavContainer maxWidth="lg">
       <NavWrapper container>
         <NavLogo size={{ xs: 4, md: 2 }}>
           <Logo src={NavbarData.logo} alt="Logo" />

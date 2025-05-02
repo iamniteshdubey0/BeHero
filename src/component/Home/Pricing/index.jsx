@@ -91,12 +91,18 @@ const PricingHeader = styled(Grid)(({ theme }) => ({
 const MainHeading = styled(Stack)(({ theme }) => ({
   fontSize: theme.typography.h1.fontSize,
   fontWeight: theme.typography.fontWeightBold,
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.typography.h3.fontSize,
+  },
 }));
 
 const SubHeading = styled(Stack)(({ theme }) => ({
   fontSize: theme.typography.body1.fontSize,
   fontWeight: theme.typography.fontWeightMedium,
   color: "gray",
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.typography.body2.fontSize,
+  },
 }));
 
 const CardContainer = styled(Grid)(({ theme }) => ({

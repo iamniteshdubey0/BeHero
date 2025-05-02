@@ -23,7 +23,6 @@ const Wrapper = styled(Grid)(() => ({
 
 const FeatureHighlight = styled(Grid)(({ theme }) => ({
   width: "85%",
-  height: "200px",
   backgroundColor:
     theme.palette.mode === "light"
       ? tokens(theme.palette.mode).green[800]
@@ -33,6 +32,12 @@ const FeatureHighlight = styled(Grid)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   marginBottom: "10px",
+  padding: "8px",
+  [theme.breakpoints.down("md")]: {
+    width: "100%",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
 }));
 
 const FeatureDetails = styled(Grid)(({ theme }) => ({
@@ -47,15 +52,26 @@ const FeatureDetails = styled(Grid)(({ theme }) => ({
   justifyContent: "space-between",
   alignItems: "flex-start",
   gap: "5px",
+  [theme.breakpoints.down("md")]: {
+    width: "100%",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    padding: "10px",
+  },
 }));
 
-const SectionHeader = styled(Grid)(() => ({
+const SectionHeader = styled(Grid)(({theme}) => ({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "flex-start",
   padding: "0px 30px",
-  gap: "12px",
+  gap: "10px",
+  [theme.breakpoints.down("md")]: {
+    padding: "0px 8px",
+    gap: "4px",
+    marginBottom:"8px",
+  },
 }));
 
 const Heading = styled(Typography)(({ theme }) => ({
@@ -79,6 +95,9 @@ const DividerY = styled("div")(({ theme }) => ({
       : tokens(theme.palette.mode).darkPurple[600],
   margin: "0 16px",
   borderRadius: "4px",
+  [theme.breakpoints.down("md")]: {
+    display:'none'
+  },
 }));
 
 const FeatureTab = styled(Grid)(({ theme }) => ({
@@ -97,28 +116,41 @@ const FeatureTab = styled(Grid)(({ theme }) => ({
         : tokens(theme.palette.mode).darkPurple[600],
     color: tokens(theme.palette.mode).white[600],
   },
+  [theme.breakpoints.down("md")]: {
+    padding: "4px",
+  },
 }));
 
-const IconBox = styled("img")(() => ({
+const IconBox = styled("img")(({ theme }) => ({
   width: "60px",
   height: "60px",
+  [theme.breakpoints.down("md")]: {
+    width: "30px",
+    height: "30px",
+  },
 }));
 
 const TabTitle = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.h5.fontSize,
   fontWeight: theme.typography.fontWeightMedium,
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.typography.subtitle1.fontSize,
+  },
 }));
 
 const TabSubtext = styled(Typography)(({ theme }) => ({
   fontSize: "10px",
   fontWeight: theme.typography.fontWeightMedium,
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
 }));
 
 const Features = () => {
   return (
     <FeatureContainer maxWidth="lg">
       <Wrapper container>
-        <FeatureHighlight>
+        <FeatureHighlight container>
           <SectionHeader size={{ xs: 12, sm: 3.5 }}>
             <Heading>Features</Heading>
             <Subtext>
@@ -129,7 +161,7 @@ const Features = () => {
 
           <DividerY />
 
-          <FeatureTab size={{ xs: 12, sm: 2.5 }}>
+          <FeatureTab size={{ xs: 4, sm: 2.5 }}>
             <IconBox
               src="https://img.icons8.com/color/96/fantasy.png"
               alt="idea"
@@ -138,7 +170,7 @@ const Features = () => {
             <TabSubtext>Every Hero Deserves a Personal Touch</TabSubtext>
           </FeatureTab>
 
-          <FeatureTab size={{ xs: 12, sm: 2.5 }}>
+          <FeatureTab size={{ xs: 4, sm: 2.5 }}>
             <IconBox
               src="https://img.icons8.com/color/96/courses.png"
               alt="book"
@@ -147,7 +179,7 @@ const Features = () => {
             <TabSubtext>Ready-Made Adventures, Infinitely Magical</TabSubtext>
           </FeatureTab>
 
-          <FeatureTab size={{ xs: 12, sm: 2.5 }}>
+          <FeatureTab size={{ xs: 4, sm: 2.5 }}>
             <IconBox
               src="https://img.icons8.com/color/96/keyhole-shield.png"
               alt="product"

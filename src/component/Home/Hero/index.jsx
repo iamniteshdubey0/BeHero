@@ -15,6 +15,7 @@ const LayersWrapper = styled(Grid)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   zIndex: -1,
+  [theme.breakpoints.down("md")]: {},
 }));
 
 const Layer1 = styled(Grid)(({ theme }) => ({
@@ -31,6 +32,11 @@ const Layer1 = styled(Grid)(({ theme }) => ({
   borderRadius: "50%",
   zIndex: -1,
   transform: "rotate(30deg)",
+  [theme.breakpoints.down("md")]: {
+    width: "800px",
+    height: "500px",
+    transform: "rotate(40deg)",
+  },
 }));
 
 const Layer2 = styled(Grid)(({ theme }) => ({
@@ -44,6 +50,11 @@ const Layer2 = styled(Grid)(({ theme }) => ({
   borderRadius: "50%",
   zIndex: -1,
   transform: "rotate(15deg)",
+  [theme.breakpoints.down("md")]: {
+    width: "500px",
+    height: "300px",
+    transform: "rotate(106deg)",
+  },
 }));
 
 const StickerBox = styled(Box)(({ theme }) => ({
@@ -53,6 +64,10 @@ const StickerBox = styled(Box)(({ theme }) => ({
   transform: "rotate(-30deg)",
   opacity: 0.6,
   backgroundColor: "transparent",
+  [theme.breakpoints.down("md")]: {
+    width: "40px",
+    height: "40px",
+  },
 }));
 
 const ContentWrapper = styled(Grid)(({ theme }) => ({
@@ -65,6 +80,9 @@ const ContentWrapper = styled(Grid)(({ theme }) => ({
   width: "100%",
   height: "100vh",
   zIndex: 10,
+  [theme.breakpoints.down("md")]: {
+    height: "70vh",
+  },
 }));
 
 const HeroHeader = styled(Grid)(({ theme }) => ({
@@ -74,12 +92,18 @@ const HeroHeader = styled(Grid)(({ theme }) => ({
   alignItems: "center",
   width: "100%",
   gap: "10px",
+  [theme.breakpoints.down("md")]: {
+    textAlign: "center",
+  },
 }));
 
 const HeroHeading = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.h1.fontSize,
   fontWeight: theme.typography.fontWeightBold,
   fontFamily: '"Indie Flower", cursive',
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.typography.h2.fontSize,
+  },
 }));
 
 const HeroSubHeading = styled(Typography)(({ theme }) => ({
@@ -92,6 +116,9 @@ const HeroSubHeading = styled(Typography)(({ theme }) => ({
   padding: 4,
   borderRadius: "5px",
   marginBottom: "15px",
+  [theme.breakpoints.down("md")]: {
+    fontSize: theme.typography.caption.fontSize,
+  },
 }));
 
 const HeroContent = styled(Grid)(({ theme }) => ({
@@ -106,6 +133,9 @@ const LeftImage = styled(Grid)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   padding: "5px",
+  [theme.breakpoints.down("md")]: {
+    transform: "translateY(40px)",
+  },
 }));
 
 const RightImage = styled(Grid)(({ theme }) => ({
@@ -114,12 +144,19 @@ const RightImage = styled(Grid)(({ theme }) => ({
   alignItems: "start",
   padding: "5px",
   transform: "translateY(-60px)",
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
 }));
 
 const Image = styled("img")(({ theme }) => ({
   height: "300px",
   width: "300px",
   objectFit: "contain",
+  [theme.breakpoints.down("md")]: {
+    height: "200px",
+    width: "200px",
+  },
 }));
 
 const BgBox = styled(Box)(({ theme, bgcolor }) => ({
@@ -133,6 +170,10 @@ const BgBox = styled(Box)(({ theme, bgcolor }) => ({
     theme.palette.mode === "light"
       ? tokens(theme.palette.mode)[bgcolor][700]
       : tokens(theme.palette.mode)[bgcolor][300],
+  [theme.breakpoints.down("md")]: {
+    height: "160px",
+    width: "160px",
+  },
 }));
 
 const MiddleContent = styled(Grid)(({ theme }) => ({
@@ -145,6 +186,9 @@ const MiddleContent = styled(Grid)(({ theme }) => ({
 const HeroPara = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.body2.fontSize,
   fontWeight: theme.typography.fontWeightMedium,
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
 }));
 
 const Hero = () => {
@@ -153,7 +197,7 @@ const Hero = () => {
       maxWidth="lg"
       sx={{
         width: "100%",
-        height: "100vh",
+        height: { xs: "70vh", md: "100vh" },
         overflow: "hidden",
         position: "relative",
       }}
@@ -161,26 +205,21 @@ const Hero = () => {
       <LayersWrapper>
         <Layer1>
           {HeroData.overlayIcons.layer1.map((item) => (
-            <StickerBox sx={{ top: item.position.top, left: item.position.left }}>
-              <img
-                src={item.img}
-                alt={item.name}
-                style={{ width: "100%" }}
-              />
+            <StickerBox
+              sx={{ top: item.position.top, left: item.position.left }}
+            >
+              <img src={item.img} alt={item.name} style={{ width: "100%" }} />
             </StickerBox>
           ))}
 
           <Layer2>
-          {HeroData.overlayIcons.layer2.map((item) => (
-            <StickerBox sx={{ top: item.position.top, left: item.position.left }}>
-              <img
-                src={item.img}
-                alt={item.name}
-                style={{ width: "100%" }}
-              />
-            </StickerBox>
-          ))}
-           
+            {HeroData.overlayIcons.layer2.map((item) => (
+              <StickerBox
+                sx={{ top: item.position.top, left: item.position.left }}
+              >
+                <img src={item.img} alt={item.name} style={{ width: "100%" }} />
+              </StickerBox>
+            ))}
           </Layer2>
         </Layer1>
       </LayersWrapper>

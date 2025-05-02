@@ -36,7 +36,7 @@ const StyledListItem = styled(ListItem)(() => ({
 
 const FeatureItemCard = ({ icon, title, p1, p2 }) => {
   return (
-    <FeatureCard size={{ xs: 12, sm: 3.9 }}>
+    <FeatureCard size={{ xs: 5.9, sm: 3.9 }}>
       <CardHeader>
         <CardImage src={icon} />
         <TabTitle>{title}</TabTitle>

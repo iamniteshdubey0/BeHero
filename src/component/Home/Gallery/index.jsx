@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Container, Grid, styled, Typography, Box } from "@mui/material";
-import { tokens } from "../../../utils/theme";
 import SectionHeader from "../../Elements/SectionHeader";
 import CollectiomCards from "../../Elements/CollectiomCards";
 import RoundButton from "../../Elements/RoundButton";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 const Wrapper = styled(Grid)(({ theme }) => ({
   display: "flex",
@@ -18,7 +18,10 @@ const ParaText = styled(Typography)(({ theme }) => ({
   width: "50%",
   fontSize: theme.typography.body2.fontSize,
   fontWeight: theme.typography.fontWeightMedium,
-  marginBottom:"10px"
+  marginBottom: "10px",
+  [theme.breakpoints.down("md")]: {
+    width: "90%",
+  },
 }));
 
 const MiddleBox = styled(Grid)(({ theme }) => ({
@@ -45,6 +48,22 @@ const CardStack = styled(Box)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   marginTop: "5px",
+
+  // Hide scrollbar (Webkit)
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+
+  // Hide scrollbar (Firefox)
+  scrollbarWidth: "none",
+
+  [theme.breakpoints.down("md")]: {
+    width: "100vw",
+    overflowX: "auto",
+    overflowY: "hidden",
+    scrollBehavior: "smooth",
+    justifyContent: "center", // align items to start for horizontal scroll
+  },
 }));
 
 const cardPositions = [
@@ -58,6 +77,8 @@ const cardPositions = [
 
 const Gallery = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClick = (index) => {
     setActiveIndex((prev) => (prev === index ? null : index));
@@ -70,7 +91,7 @@ const Gallery = () => {
         p: 2,
         mt: 3,
         width: "100%",
-        height: "100vh",
+        height: { xs: "70vh", md: "100vh" },
         overflow: "hidden",
       }}
     >
@@ -87,6 +108,7 @@ const Gallery = () => {
                   isActive={isActive}
                   handleClick={handleClick}
                   card={card}
+                  isMobile={isMobile}
                 />
               );
             })}

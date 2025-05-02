@@ -89,6 +89,9 @@ const Wrapper = styled(Grid)(({ theme }) => ({
   position: "relative",
   width: "100%",
   padding: "40px 20px",
+  [theme.breakpoints.down("md")]: {
+    padding: "20px",
+  },
 }));
 
 const CardsWrapper = styled(Grid)(({ theme, idx }) => ({
@@ -104,16 +107,19 @@ const CardsWrapper = styled(Grid)(({ theme, idx }) => ({
     idx % 5 === 0
       ? "translateY(0px)"
       : idx % 5 === 1
-      ? "translateY(-80px)"
-      : idx % 5 === 2
       ? "translateY(-40px)"
+      : idx % 5 === 2
+      ? "translateY(-25px)"
       : idx % 5 === 3
-      ? "translateY(20px)"
-      : "translateY(-60px)",
+      ? "translateY(5px)"
+      : "translateY(-50px)",
   "&:hover": {
     zIndex: 1000,
   },
   transition: "transform 0.3s ease",
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "row",
+  },
 }));
 
 const TestimonialCard = styled(Box)(() => ({
@@ -156,7 +162,7 @@ const DropBoxTitle = styled(Typography)(({ theme }) => ({
 }));
 
 const DropBoxText = styled(Typography)(({ theme }) => ({
-  marginTop:'8px',
+  marginTop: "8px",
   fontSize: theme.typography.body1.fontSize,
   fontWeight: theme.typography.fontWeightMedium,
   fontFamily: '"Indie Flower", cursive',
@@ -175,12 +181,12 @@ const TestimonialSection = () => {
         title="Trusted by parents"
         subtitle="from various industries"
       ></SectionHeader2>
-      <Wrapper container spacing={6}>
+      <Wrapper container spacing={{xs:4, md:6}}>
         {testimonials.map((testimonial, index) => (
           <CardsWrapper
             idx={index}
             key={index}
-            size={{ xs: 6, sm: 4, md: 2 }}
+            size={{ xs: 5.5, sm: 4, md: 2 }}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
