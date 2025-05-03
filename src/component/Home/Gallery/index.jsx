@@ -43,30 +43,18 @@ const LowerBox = styled(Grid)(({ theme }) => ({
 const CardStack = styled(Box)(({ theme }) => ({
   position: "relative",
   width: "100%",
+  minWidth: "100%",
   height: "300px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   marginTop: "5px",
-
-  // Hide scrollbar (Webkit)
-  "&::-webkit-scrollbar": {
-    display: "none",
-  },
-
-  // Hide scrollbar (Firefox)
-  scrollbarWidth: "none",
-
   [theme.breakpoints.down("md")]: {
-    width: "100vw",
-    overflowX: "auto",
-    overflowY: "hidden",
-    scrollBehavior: "smooth",
-    justifyContent: "center", // align items to start for horizontal scroll
+    minWidth: "150px",
   },
 }));
 
-const cardPositions = [
+const desktopCardPositions = [
   { rotate: -15, left: -420, z: 1 },
   { rotate: -7, left: -280, z: 2 },
   { rotate: 3, left: -140, z: 3 },
@@ -75,10 +63,17 @@ const cardPositions = [
   { rotate: 15, left: 280, z: 1 },
 ];
 
+const mobileCardPositions = [
+  { rotate: -15, left: -90, z: 1 },
+  { rotate: 0, left: 0, z: 3 },
+  { rotate: 15, left: 90, z: 2 },
+];
+
 const Gallery = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const visibleCards = isMobile ? mobileCardPositions : desktopCardPositions;
 
   const handleClick = (index) => {
     setActiveIndex((prev) => (prev === index ? null : index));
@@ -99,7 +94,7 @@ const Gallery = () => {
         <SectionHeader title="Collections" subtitle="Our Best"></SectionHeader>
         <MiddleBox>
           <CardStack>
-            {cardPositions.map((card, index) => {
+            {visibleCards.map((card, index) => {
               const isActive = activeIndex === index;
               return (
                 <CollectiomCards
@@ -108,7 +103,6 @@ const Gallery = () => {
                   isActive={isActive}
                   handleClick={handleClick}
                   card={card}
-                  isMobile={isMobile}
                 />
               );
             })}

@@ -86,6 +86,11 @@ const PricingHeader = styled(Grid)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "flex-end",
+  [theme.breakpoints.down('md')]:{
+    flexDirection:'column',
+    alignItems: "flex-start",
+    gap:4
+  }
 }));
 
 const MainHeading = styled(Stack)(({ theme }) => ({

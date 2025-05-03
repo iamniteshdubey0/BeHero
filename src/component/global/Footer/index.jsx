@@ -44,6 +44,7 @@ const NewsletterSection = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
     textAlign: "center",
+    width: "100%",
   },
 }));
 
@@ -100,6 +101,10 @@ const FooterBottom = styled(Box)(({ theme }) => ({
   borderTop: "1px solid #eee",
   marginTop: theme.spacing(4),
   fontSize: 12,
+  [theme.breakpoints.down("md")]: {
+    flexDirection:'column',
+    padding: theme.spacing(1, 0),
+  },
 }));
 
 const FooterPrimaryBox = styled(Box)(() => ({}));
@@ -129,7 +134,7 @@ const HeaderLogoTitle = styled(Typography)(({ theme }) => ({
 const FooterHeaderText = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.body2.fontSize,
   fontWeight: theme.typography.fontWeightMedium,
-  marginBottom: "15px",
+  marginBottom: {xs:'4px', md:'16px'},
   color:
     theme.palette.mode === "light"
       ? tokens(theme.palette.mode).white[200]
@@ -227,7 +232,7 @@ const Footer = () => {
           </Grid>
 
           {FooterData.main.footerLinks.map((item, index) => (
-            <FooterLinksBox key={index} size={{ xs: 12, md: 2 }}>
+            <FooterLinksBox key={index} size={{ xs: 6, md: 2 }}>
               <FooterLinksHeading>{item.name}</FooterLinksHeading>
               <Stack spacing={1}>
                 {item.links.map((item, index) => (
@@ -239,7 +244,7 @@ const Footer = () => {
             </FooterLinksBox>
           ))}
 
-          <Grid size={{ xs: 12, md: 2 }}>
+          <Grid size={{ xs: 6, md: 2 }}>
             <FooterLinksHeading>
               {FooterData.main.contact.label}
             </FooterLinksHeading>

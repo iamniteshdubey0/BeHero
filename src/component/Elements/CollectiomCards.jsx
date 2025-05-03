@@ -21,7 +21,7 @@ const CardContainer = styled(MotionCard)(({ theme }) => ({
   },
 }));
 
-const CardWrapper = styled(Grid)(({ theme }) => ({
+const CardWrapper = styled(Grid)(({}) => ({
   borderRadius: "4px",
   position: "relative",
   width: "100%",
@@ -29,7 +29,7 @@ const CardWrapper = styled(Grid)(({ theme }) => ({
   overflow: "hidden",
 }));
 
-const CardImg = styled("img")(({ theme }) => ({
+const CardImg = styled("img")(({}) => ({
   width: "100%",
   height: "100%",
   objectFit: "cover",
@@ -50,26 +50,26 @@ const CardTitle = styled(Typography)(({ theme }) => ({
   zIndex: 2,
 }));
 
-const CollectiomCards = ({ isActive, handleClick, index, card, isMobile }) => {
+const CollectiomCards = ({ isActive, handleClick, index, card }) => {
   return (
     <CardContainer
       layout
       initial={{
-        rotate: isMobile ? 0 : parseFloat(card.rotate),
-        left: isMobile ? 0 : card.left,
+        rotate: parseFloat(card.rotate),
+        left: card.left,
       }}
       animate={{
-        rotate: isMobile ? 0 : isActive ? 0 : parseFloat(card.rotate),
-        left: isMobile ? 0 : card.left,
+        rotate: isActive ? 0 : parseFloat(card.rotate),
+        // left: card.left,
+        left: isActive ? 0 : card.left,
         scale: isActive ? 1.5 : 1,
-        zIndex: isMobile ? 1 : isActive ? 20 : card.z,
+        zIndex: isActive ? 20 : card.z,
       }}
       whileHover={{ scale: isActive ? 1.5 : 1.1 }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
       onClick={() => handleClick(index)}
       style={{
-        position: isMobile ? "relative" : "absolute",
-        marginRight: isMobile ? "16px" : 0,
+        position: "absolute",
       }}
     >
       <CardWrapper>

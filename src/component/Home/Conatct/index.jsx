@@ -24,6 +24,9 @@ const ContactContainer = styled(Container)(({ theme }) => ({
       : `linear-gradient(to bottom right, ${
           tokens(theme.palette.mode).darkPurple[600]
         }, ${tokens(theme.palette.mode).darkPurple[800]})`,
+  [theme.breakpoints.down("md")]: {
+    padding: "8px",
+  },
 }));
 
 const ContactHeader = styled(Stack)(({}) => ({
@@ -45,17 +48,20 @@ const ContactFormContainer = styled(Grid)(({}) => ({
   justifyContent: "center",
 }));
 
-const FormBox = styled(Paper)(({theme}) => ({
+const FormBox = styled(Paper)(({ theme }) => ({
   padding: "2px",
   borderRadius: "16px",
   overflow: "hidden",
   display: "flex",
-  flexDirection: { xs: "column", md: "row" },
+  flexDirection: "row",
+  gap: 2,
   backgroundColor:
-  theme.palette.mode === "light"
-    ? tokens(theme.palette.mode).white[600]
-    : tokens(theme.palette.mode).darkPurple[800],
-
+    theme.palette.mode === "light"
+      ? tokens(theme.palette.mode).white[600]
+      : tokens(theme.palette.mode).darkPurple[800],
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column",
+  },
 }));
 
 const ContactInfoBox = styled(Box)(({ theme }) => ({
