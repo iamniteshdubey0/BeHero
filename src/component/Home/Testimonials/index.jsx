@@ -12,6 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import SectionHeader2 from "../../Elements/SectionHeader2";
 import { tokens } from "../../../utils/theme";
 import "@fontsource/indie-flower";
+import {useMediaQuery } from "@mui/material";
 
 const testimonials = [
   {
@@ -91,6 +92,7 @@ const Wrapper = styled(Grid)(({ theme }) => ({
   padding: "40px 20px",
   [theme.breakpoints.down("md")]: {
     padding: "20px",
+    minHeight:'140vh'
   },
 }));
 
@@ -173,6 +175,7 @@ const AnimatedCard = motion(TestimonialCard);
 const TestimonialSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <TestimonialsContainer maxWidth="lg">
@@ -201,9 +204,9 @@ const TestimonialSection = () => {
             <AnimatePresence>
               {hoveredIndex === index && (
                 <motion.div
-                  initial={{ opacity: 0, x: 0 }}
-                  animate={{ opacity: 1, x: 30 }}
-                  exit={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, ...(isMobile ? { y: 0, x:-80 } : { x: 0 }), }}
+                  animate={{ opacity: 1, ...(isMobile ? { y: 30, x:-80 } : { x: 30 }), }}
+                  exit={{ opacity: 0, x: 10 }}
                   transition={{ duration: 0.3 }}
                   style={{ position: "absolute", zIndex: 100 }}
                 >

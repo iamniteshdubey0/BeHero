@@ -204,8 +204,9 @@ const Hero = () => {
     >
       <LayersWrapper>
         <Layer1>
-          {HeroData.overlayIcons.layer1.map((item) => (
+          {HeroData.overlayIcons.layer1.map((item, index) => (
             <StickerBox
+              key={index}
               sx={{ top: item.position.top, left: item.position.left }}
             >
               <img src={item.img} alt={item.name} style={{ width: "100%" }} />
@@ -213,8 +214,9 @@ const Hero = () => {
           ))}
 
           <Layer2>
-            {HeroData.overlayIcons.layer2.map((item) => (
+            {HeroData.overlayIcons.layer2.map((item, index) => (
               <StickerBox
+                key={index}
                 sx={{ top: item.position.top, left: item.position.left }}
               >
                 <img src={item.img} alt={item.name} style={{ width: "100%" }} />
