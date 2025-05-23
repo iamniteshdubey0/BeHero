@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import { useContext } from "react";
-import { Container, Grid, styled, useMediaQuery } from "@mui/material";
-import { tokens, ColorModeContext } from "../../../utils/theme";
+import React, { useState, useContext } from "react";
+import {
+  Container,
+  Grid,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { ColorModeContext, tokens } from "../../../utils/theme";
 import RoundButton from "../../Elements/RoundButton";
-import { useTheme } from "@mui/material";
 import DynamicIconButton from "../../Elements/styledIconButon";
 import LoginIcon from "@mui/icons-material/Login";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
@@ -13,7 +17,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import "@fontsource/indie-flower";
 import { NavbarData } from "../../../constants/UIConstant";
 
-const NavContainer = styled(Container)(({ theme, togglemenu }) => ({
+// Styled Components
+const NavContainer = styled(Container, {
+  shouldForwardProp: (prop) => prop !== "togglemenu",
+})(({ theme, togglemenu }) => ({
   position: "sticky",
   top: 20,
   marginTop: "16px",
@@ -24,14 +31,13 @@ const NavContainer = styled(Container)(({ theme, togglemenu }) => ({
       : tokens(theme.palette.mode).darkPurple[600],
   padding: "7px 20px",
   boxShadow: theme.shadows[1],
-  height: "55px",
   zIndex: 100,
-  transition: "all 0.1s",
+  transition: "all 0.2s ease-in-out",
   [theme.breakpoints.down("md")]: {
     top: 0,
-    marginTop: "0px",
-    borderRadius: "0px",
-    height: togglemenu ? "50vh" : "",
+    marginTop: 0,
+    borderRadius: 0,
+    height: togglemenu ? "50vh" : "55px",
     position: "absolute",
   },
 }));
@@ -66,27 +72,30 @@ const LogoText = styled("span")(({ theme }) => ({
   fontSize: theme.typography.h3.fontSize,
   fontWeight: theme.typography.fontWeightBold,
   fontFamily: '"Indie Flower", cursive',
+  [theme.breakpoints.down("sm")]: {
+    display: "none",
+  },
 }));
 
-const NavItems = styled(Grid)(({ theme, togglemenu }) => ({
+const NavItems = styled(Grid, {
+  shouldForwardProp: (prop) => prop !== "togglemenu",
+})(({ theme, togglemenu }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   gap: theme.spacing(3),
-  transition: "all 0.1s",
+  transition: "all 0.2s ease-in-out",
   [theme.breakpoints.down("md")]: {
     display: togglemenu ? "flex" : "none",
     position: "absolute",
     top: "80px",
     flexDirection: "column",
-    justifyContent: "flex-start",
     alignItems: "center",
   },
 }));
 
 const NavItem = styled("a")(({ theme }) => ({
   textTransform: "capitalize",
-  fontSize: "14px",
   fontWeight: 400,
   cursor: "pointer",
   textDecoration: "none",
@@ -100,15 +109,19 @@ const NavItem = styled("a")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     fontSize: "22px",
   },
+  [theme.breakpoints.up("md")]: {
+    fontSize: "14px",
+  },
 }));
 
 const NavActions = styled(Grid)(({ theme }) => ({
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "flex-end",
   alignItems: "center",
   gap: theme.spacing(2),
 }));
 
+// Component
 const Navbar = () => {
   const colorMode = useContext(ColorModeContext);
   const theme = useTheme();
@@ -118,38 +131,42 @@ const Navbar = () => {
   return (
     <NavContainer maxWidth="lg" togglemenu={toggleMenu}>
       <NavWrapper container>
-        <NavLogo size={{ xs: 4, md: 2 }}>
+        <NavLogo size={{ xs: 2, sm: 4, md: 2 }}>
           <Logo src={NavbarData.logo} alt="Logo" />
           <LogoText>{NavbarData.name}</LogoText>
         </NavLogo>
-        <NavItems size={{ xs: 11, md: 8 }} togglemenu={toggleMenu}>
+
+        <NavItems size={{ xs: 12, md: 7 }} togglemenu={toggleMenu}>
           {NavbarData.navlist.map((item, index) => (
             <NavItem key={index} href={item.link}>
               {item.title}
             </NavItem>
           ))}
+          {isMobile && (
+            <RoundButton
+              label="signup"
+              bgColor="secondary"
+              icon={<LoginIcon />}
+            />
+          )}
         </NavItems>
-        <NavActions size={{ xs: 2, md: 2 }}>
+
+        <NavActions size={{ xs: 3, sm: 4, md: 3 }}>
           {isMobile && (
             <DynamicIconButton
               bgColor="secondary"
-              onClick={() => {
-                setToggleMenu((prevSelected) => !prevSelected);
-              }}
+              onClick={() => setToggleMenu((prev) => !prev)}
             >
-              {!toggleMenu ? (
-                <MenuIcon fontSize="small" />
-              ) : (
+              {toggleMenu ? (
                 <CloseIcon fontSize="small" />
+              ) : (
+                <MenuIcon fontSize="small" />
               )}
             </DynamicIconButton>
           )}
           <DynamicIconButton
             bgColor="secondary"
-            onClick={() => {
-              colorMode.toggleColorMode();
-              setSelected((prevSelected) => !prevSelected);
-            }}
+            onClick={colorMode.toggleColorMode}
           >
             {theme.palette.mode === "light" ? (
               <DarkModeIcon fontSize="small" />
@@ -157,11 +174,13 @@ const Navbar = () => {
               <LightModeIcon fontSize="small" />
             )}
           </DynamicIconButton>
-          <RoundButton
-            label="signup"
-            bgColor="secondary"
-            icon={<LoginIcon />}
-          />
+          {!isMobile && (
+            <RoundButton
+              label="signup"
+              bgColor="secondary"
+              icon={<LoginIcon />}
+            />
+          )}
         </NavActions>
       </NavWrapper>
     </NavContainer>

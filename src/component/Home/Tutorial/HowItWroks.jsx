@@ -40,7 +40,7 @@ const TutorialContainer = styled(Container)(({ theme }) => ({
   flexDirection: "column",
   padding: "5px",
   width: "100%",
-  minHeight: "80vh",
+  // minHeight: "80vh",
   overflow: "hidden",
   marginTop: "4rem",
 }));

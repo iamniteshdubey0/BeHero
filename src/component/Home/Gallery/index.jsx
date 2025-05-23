@@ -81,12 +81,13 @@ const Gallery = () => {
 
   return (
     <Container
+      id="gallery"
       maxWidth="lg"
       sx={{
         p: 2,
         mt: 3,
         width: "100%",
-        height: { xs: "70vh", md: "100vh" },
+        height: { xs: "70vh", md: "fit-content" },
         overflow: "hidden",
       }}
     >

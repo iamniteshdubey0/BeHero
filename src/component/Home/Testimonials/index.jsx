@@ -77,7 +77,7 @@ const TestimonialsContainer = styled(Container)(({ theme }) => ({
   flexDirection: "column",
   padding: "5px",
   width: "100%",
-  minHeight: "100vh",
+  // minHeight: "100vh",
   overflow: "hidden",
   marginTop: "30px",
   textAlign: "center",

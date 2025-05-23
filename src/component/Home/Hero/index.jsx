@@ -197,7 +197,7 @@ const Hero = () => {
       maxWidth="lg"
       sx={{
         width: "100%",
-        height: { xs: "70vh", md: "100vh" },
+        height: { xs: "70vh", sm:"60vh", md: "fit-content" },
         overflow: "hidden",
         position: "relative",
       }}

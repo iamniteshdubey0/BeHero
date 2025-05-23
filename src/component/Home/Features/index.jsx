@@ -148,7 +148,7 @@ const TabSubtext = styled(Typography)(({ theme }) => ({
 
 const Features = () => {
   return (
-    <FeatureContainer maxWidth="lg">
+    <FeatureContainer maxWidth="lg" id="features">
       <Wrapper container>
         <FeatureHighlight container>
           <SectionHeader size={{ xs: 12, sm: 3.5 }}>
